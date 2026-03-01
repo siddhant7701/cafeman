@@ -144,11 +144,29 @@ Dashboard
 </a>
 </li>
 
-<li>
-<a href="billing.php"
-class="nav-link <?= $current_page=='billing.php'?'active':'' ?>">
-Billing
-</a>
+<li class="nav-item dropdown">
+    <a href="#"
+       class="nav-link dropdown-toggle <?= in_array($current_page, ['billing.php','bill_history.php']) ? 'active' : '' ?>"
+       onclick="toggleDropdown(event)">
+        Billing ▾
+    </a>
+
+    <ul class="dropdown-menu <?= in_array($current_page, ['billing.php','bill_history.php']) ? 'show' : '' ?>">
+        <li>
+            <a href="billing.php"
+               class="<?= $current_page=='billing.php' ? 'active' : '' ?>">
+               Create Bill
+            </a>
+        </li>
+
+        <li>
+            <a href="bill_history.php"
+               class="<?= $current_page=='bill_history.php' ? 'active' : '' ?>">
+                <i class="fas fa-history"></i>
+                Bill History
+            </a>
+        </li>
+    </ul>
 </li>
 
 <?php if (isManager()): ?>

@@ -88,17 +88,35 @@ include_once 'includes/header.php';
 
 <div class="row">
     <div class="card">
-        <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Attendance for <?php echo date('F d, Y', strtotime($selected_date)); ?></h2>
-                <div>
-                    <form action="staff_attendance.php" method="get" class="form-inline">
-                        <input style="width:200px;" type="date" name="date" class="form-control datepicker" value="<?php echo $selected_date; ?>">
-                        <button type="submit" style=" color: white; border: 1px solid #ffffff; padding: 5px 10px; border-radius: 3px;" class="btn">Go</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+       <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+        
+        <h2>
+            Attendance for 
+            <?php echo date('F d, Y', strtotime($selected_date ?? date('Y-m-d'))); ?>
+        </h2>
+
+        <form action="staff_attendance.php" method="GET" class="d-flex align-items-center gap-2">
+            
+            <input 
+                type="date" 
+                name="date" 
+                class="form-control" 
+                style="width:200px;"
+                value="<?php echo isset($selected_date) ? $selected_date : date('Y-m-d'); ?>"
+            >
+
+            <button 
+                type="submit" 
+                class="btn btn-primary"
+            >
+                Go
+            </button>
+
+        </form>
+
+    </div>
+</div>
         <div class="card-body">
             <form action="staff_attendance.php" method="post">
                 <input type="hidden" name="attendance_date" value="<?php echo $selected_date; ?>">
